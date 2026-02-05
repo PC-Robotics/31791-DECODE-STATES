@@ -34,4 +34,9 @@ public class WisdomBot extends DriveBasePID{
     }
 
 
+    public void spinUpFlywheel(){
+
+    }
+
+
 }
