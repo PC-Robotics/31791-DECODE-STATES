@@ -1,110 +1,75 @@
 package org.firstinspires.ftc.teamcode.Robots;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 
-import org.firstinspires.ftc.teamcode.Robots.DriveBasePID;
-import org.firstinspires.ftc.teamcode.subsystems.DualFlywheelShooter;
-import org.firstinspires.ftc.teamcode.subsystems.ArtifactRecycler;
-import org.firstinspires.ftc.teamcode.subsystems.ArtifactQueueManager;
-import org.firstinspires.ftc.teamcode.Support.ConstantsPID;
+import org.firstinspires.ftc.teamcode.subsystems.Dropper;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.Transfer;
+import org.firstinspires.ftc.teamcode.subsystems.ArtifactColorQueue;
 
-public class WisdomBot extends DriveBasePID {
 
-    private DualFlywheelShooter shooter;
-    private static Servo rgbIndicator;
-    private ArtifactRecycler recycler;
-    private ArtifactQueueManager queueManager;
+public class WisdomBot extends DriveBase {
 
-    public WisdomBot(LinearOpMode opMode, boolean isFC) {
-        super(opMode, isFC);
+    private Intake intake;
+    private Dropper dropper;
+    private ArtifactColorQueue colorQueue;
+
+
+    private Transfer transfer;
+
+    public WisdomBot(LinearOpMode mode, boolean isFC) {
+        super(mode, isFC);
     }
 
     public void init() {
 
-        // Flywheel motors
-        DcMotorEx leftFly = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel_left");
-        DcMotorEx rightFly = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel_right");
+        DcMotorEx intakeMotor =
+                myOpMode.hardwareMap.get(DcMotorEx.class, "intake");
 
-        // Recycler motors
-        DcMotorEx intake = myOpMode.hardwareMap.get(DcMotorEx.class, "intake");
-        DcMotorEx conveyor = myOpMode.hardwareMap.get(DcMotorEx.class, "transfer"); // renamed for clarity
-        DcMotorEx boostLeft = myOpMode.hardwareMap.get(DcMotorEx.class, "boost_left");
-        DcMotorEx boostRight = myOpMode.hardwareMap.get(DcMotorEx.class, "boost_right");
+        DcMotorEx transferMotor =
+                myOpMode.hardwareMap.get(DcMotorEx.class, "transfer");
 
-        // Recycler servo
-        Servo dropServo = myOpMode.hardwareMap.get(Servo.class, "gate_servo");
+        Servo dropServo =
+                myOpMode.hardwareMap.get(Servo.class, "drop_servo");
 
-        // Color sensor
-        ColorSensor chamberSensor = myOpMode.hardwareMap.get(ColorSensor.class, "upper_color");
+        ColorSensor sensor1 =
+                myOpMode.hardwareMap.get(ColorSensor.class, "color1");
 
-        // Initialize shooter
-        shooter = new DualFlywheelShooter(leftFly, rightFly);
+        ColorSensor sensor2 =
+                myOpMode.hardwareMap.get(ColorSensor.class, "color2");
 
-        // Initialize queue manager for green/purple detection
-        queueManager = new ArtifactQueueManager(chamberSensor, null, null, null); // If you have LEDs, put them here
+        Servo ledServo =
+                myOpMode.hardwareMap.get(Servo.class, "led_servo");
 
-        // Initialize recycler
-        recycler = new ArtifactRecycler(
-                intake,
-                conveyor,
-                boostLeft,
-                boostRight,
-                dropServo,
-                chamberSensor,
-                shooter,
-                queueManager,
-                ConstantsPID.LAUNCHER_MIN_VELOCITY
-        );
+        colorQueue = new ArtifactColorQueue(sensor1, sensor2, ledServo);
+
+
+        dropper = new Dropper(dropServo);
+
+        intake = new Intake(intakeMotor);
+        transfer = new Transfer(transferMotor);
 
         super.init();
     }
 
-    public void setFlywheelVelocity(double velocity) {
-        shooter.setVelocity(velocity);
+    public Intake getIntake() {
+        return intake;
     }
 
-    public void stopFlywheel() {
-        shooter.stop();
+    public Dropper getDropper() {
+        return dropper;
     }
 
-    public enum RGBColor {
-        OFF(0.0),       // 500µs
-        RED(0.33),     // 1100µs
-        YELLOW(0.388),  // 1300µs
-        SAGE(0.444),    // 1400µs
-        GREEN(0.500),   // 1500µs
-        AZURE(0.555),   // 1600µs
-        BLUE(0.611),    // 1700µs
-        INDIGO(0.666),  // 1800µs
-        VIOLET(0.722),  // 1900µs
-        WHITE(1.0);     // 2500µs
 
-        private final double position;
-
-        RGBColor(double position) {
-            this. position = position;
-        }
-
-        public double getPosition() {
-            return position;
-        }
+    public Transfer getTransfer() {
+        return transfer;
     }
 
-        public void setRGBColor(RGBColor color) {
-        if(rgbIndicator != null) {
-            rgbIndicator.setPosition(color.getPosition());
-        }
-
+    public ArtifactColorQueue getColorQueue() {
+        return colorQueue;
     }
 
-    public void updateRecycler(boolean intakeCommand, boolean shootCommand, boolean dropCommand) {
-        recycler.update(intakeCommand, shootCommand, dropCommand);
-    }
-
-    public ArtifactQueueManager getQueueManager() {
-        return queueManager;
-    }
 }
