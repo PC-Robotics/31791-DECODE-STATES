@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.ArtifactColorQueue;
 
 
-public class WisdomBot extends DriveBasePID {
+public class TestRobot extends DriveBasePID {
 
     private Intake intake;
     private Flywheel flywheel;
@@ -26,7 +26,7 @@ public class WisdomBot extends DriveBasePID {
 
     private Transfer transfer;
 
-    public WisdomBot(LinearOpMode mode, boolean isFC) {
+    public TestRobot(LinearOpMode mode, boolean isFC) {
         super(mode, isFC);
     }
 
@@ -38,14 +38,6 @@ public class WisdomBot extends DriveBasePID {
         DcMotorEx transferMotor =
                 myOpMode.hardwareMap.get(DcMotorEx.class, "transfer");
 
-        Servo dropServo = myOpMode.hardwareMap.get(Servo.class, "drop_servo");
-        DcMotorEx fly1 = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel1");
-        DcMotorEx fly2 = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel2");
-
-
-
-
-
         ColorSensor sensor1 =
                 myOpMode.hardwareMap.get(ColorSensor.class, "color1");
 
@@ -53,21 +45,12 @@ public class WisdomBot extends DriveBasePID {
                 myOpMode.hardwareMap.get(ColorSensor.class, "color2");
 
         Servo ledServo =
-                myOpMode.hardwareMap.get(Servo.class, "led_servo");
+                myOpMode.hardwareMap.get(Servo.class, "led1");
         Servo ledServo2 =
-                myOpMode.hardwareMap.get(Servo.class, "led_servo2");
+                myOpMode.hardwareMap.get(Servo.class, "led2");
         Servo ledServo3 =
-                myOpMode.hardwareMap.get(Servo.class, "led_servo3");
+                myOpMode.hardwareMap.get(Servo.class, "led3");
 
-
-
-        CRServo boosterLeft =
-                myOpMode.hardwareMap.get(CRServo.class, "boosterLeft");
-
-        CRServo boosterRight =
-                myOpMode.hardwareMap.get(CRServo.class, "boosterRight");
-
-        booster = new Booster(boosterLeft, boosterRight);
 
 
 
@@ -76,11 +59,11 @@ public class WisdomBot extends DriveBasePID {
         colorQueue = new ArtifactColorQueue(sensor1, sensor2, ledServo, ledServo2, ledServo3);
 
 
-        dropper = new Dropper(dropServo);
+
 
         intake = new Intake(intakeMotor);
         transfer = new Transfer(transferMotor);
-        flywheel = new Flywheel(fly1, fly2);
+
 
 
         super.init();
@@ -91,10 +74,6 @@ public class WisdomBot extends DriveBasePID {
         return intake;
     }
 
-    public Dropper getDropper() {
-        return dropper;
-    }
-
 
     public Transfer getTransfer() {
         return transfer;
@@ -103,12 +82,7 @@ public class WisdomBot extends DriveBasePID {
     public ArtifactColorQueue getColorQueue() {
         return colorQueue;
     }
-    public Flywheel getFlywheel(){
-        return flywheel;
-    }
-    public Booster getBooster() {
-        return booster;
-    }
+
 
 
 
