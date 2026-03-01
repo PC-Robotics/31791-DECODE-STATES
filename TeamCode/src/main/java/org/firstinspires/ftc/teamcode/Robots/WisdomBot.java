@@ -104,7 +104,7 @@ public class WisdomBot extends DriveBasePID {
         return transfer;
     }
 
-    public ArtifactColorQueue getColorQueue() {
+     public ArtifactColorQueue getColorQueue() {
         return colorQueue;
     }
     public Flywheel getFlywheel(){

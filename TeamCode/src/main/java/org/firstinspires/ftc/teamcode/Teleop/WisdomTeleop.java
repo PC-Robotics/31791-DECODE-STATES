@@ -70,9 +70,18 @@ public class WisdomTeleop extends LinearOpMode {
             // Hold right trigger to spin flywheel
             if (gamepad1.rightBumperWasPressed()) {
                 robot.getFlywheel().setVelocity(flywheelRPM);
-            } else {
+            }
+            if(gamepad1.leftBumperWasPressed()){
                 robot.getFlywheel().stop();
             }
+            if(gamepad1.start){
+                robot.getBooster().run();
+                robot.getDropper().shoot();
+            } else{
+                robot.getBooster().stop();
+                robot.getDropper().hold();
+            }
+
 
 
             // ===== DROPPER =====
@@ -99,21 +108,7 @@ public class WisdomTeleop extends LinearOpMode {
 
 
 
-            if(gamepad1.right_bumper) {
 
-                if(x > 20) {
-                    robot.getFlywheel().setVelocity(2000);
-                }
-                else if(x < 10) {
-                    robot.getFlywheel().setVelocity(1400);
-                }
-                else {
-                    robot.getFlywheel().setVelocity(1800);
-                }
-
-            } else {
-                robot.getFlywheel().stop();
-            }
 
             // ===== TELEMETRY =====
             telemetry.addLine("==== ROBOT ====");
