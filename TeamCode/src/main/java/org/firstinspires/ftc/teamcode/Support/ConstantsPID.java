@@ -32,10 +32,10 @@ public class ConstantsPID
     public static final double YAW_MAX_AUTO = 0.8;
 
     //Constants dealing with launch velocity
-    public static double LAUNCHER_HIGH_VELOCITY = 1850;
-    public static double LAUNCHER_LOWER_VELOCITY = 1800;
-    public static double LAUNCHER_TARGET_VELOCITY = 1540;
-    public static double LAUNCHER_MIN_VELOCITY = 1520;
+    public static double LAUNCHER_HIGH_VELOCITY = 1850; //todo tune these
+    public static double LAUNCHER_LOWER_VELOCITY = 1800;//todo tune these
+    public static double LAUNCHER_TARGET_VELOCITY = 1540;//todo tune these
+    public static double LAUNCHER_MIN_VELOCITY = 1520;//todo tune these
 
 
 
