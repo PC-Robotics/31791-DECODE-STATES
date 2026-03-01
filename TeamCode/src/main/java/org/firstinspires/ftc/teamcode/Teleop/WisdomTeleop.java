@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Robots.WisdomBot;
@@ -15,6 +16,10 @@ public class WisdomTeleop extends LinearOpMode {
     public void runOpMode() {
 
         WisdomBot robot = new WisdomBot(this,false);
+
+        double testAngle = 0.5;          // starting angle
+        double flywheelRPM = 1800;       // constant while testing
+        double angleAdjustSpeed = 0.002; // how fast it changes
 
         robot.init();
 
@@ -34,6 +39,22 @@ public class WisdomTeleop extends LinearOpMode {
 
             robot.drive(axial,lateral,yaw);
 
+            // Increase angle
+            if (gamepad1.dpadRightWasPressed()) {
+                testAngle += angleAdjustSpeed;
+            }
+
+
+            if (gamepad1.dpadLeftWasPressed()) {
+                testAngle -= angleAdjustSpeed;
+            }
+
+
+            testAngle = Range.clip(testAngle, 0.2, 0.8);
+
+
+            robot.getFlywheel().setAngle(testAngle);
+
             // ===== INTAKE SYSTEM =====
             if (gamepad1.right_trigger > 0.2) {
                 robot.getIntake().intake();
@@ -46,6 +67,13 @@ public class WisdomTeleop extends LinearOpMode {
                 robot.getIntake().stop();
                 robot.getTransfer().stop();
             }
+            // Hold right trigger to spin flywheel
+            if (gamepad1.rightBumperWasPressed()) {
+                robot.getFlywheel().setVelocity(flywheelRPM);
+            } else {
+                robot.getFlywheel().stop();
+            }
+
 
             // ===== DROPPER =====
             if (gamepad1.dpadDownWasPressed()) {
@@ -80,7 +108,7 @@ public class WisdomTeleop extends LinearOpMode {
                     robot.getFlywheel().setVelocity(1400);
                 }
                 else {
-                    robot.getFlywheel().setVelocity(1700);
+                    robot.getFlywheel().setVelocity(1800);
                 }
 
             } else {

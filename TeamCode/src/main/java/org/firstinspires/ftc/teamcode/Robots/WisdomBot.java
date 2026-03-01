@@ -80,7 +80,11 @@ public class WisdomBot extends DriveBasePID {
 
         intake = new Intake(intakeMotor);
         transfer = new Transfer(transferMotor);
-        flywheel = new Flywheel(fly1, fly2);
+        Servo shooterAngle =
+                myOpMode.hardwareMap.get(Servo.class, "shooterAngle");
+
+        flywheel = new Flywheel(fly1, fly2, shooterAngle);
+
 
 
         super.init();
