@@ -38,7 +38,7 @@ public class Teleop extends LinearOpMode {
         double axial = -gamepad1.left_stick_y;
         double lateral = gamepad1.left_stick_x;
         double yaw = gamepad1.right_stick_x;
-        robot.drive(axial, lateral, yaw);
+        robot.drive(axial, lateral, yaw, 1);
     }
 
 
@@ -56,6 +56,14 @@ public class Teleop extends LinearOpMode {
         } else {
             robot.getIntake().stop();
             robot.getTransfer().stop();
+        }
+
+        if(gamepad1.dpadUpWasPressed()){
+            robot.getDropper().shoot();
+        } else if(gamepad1.dpadDownWasPressed()){
+            robot.getDropper().drop();
+        } else{
+            robot.getDropper().hold();
         }
     }
 

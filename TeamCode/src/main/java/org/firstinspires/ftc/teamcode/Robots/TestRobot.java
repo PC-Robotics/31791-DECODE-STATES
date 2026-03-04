@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subsystems.Booster;
@@ -14,7 +15,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.ArtifactColorQueue;
 
 
-public class TestRobot extends DriveBasePID {
+public class TestRobot extends DriveBase {
 
     private Intake intake;
     private Flywheel flywheel;
@@ -51,6 +52,13 @@ public class TestRobot extends DriveBasePID {
         Servo ledServo3 =
                 myOpMode.hardwareMap.get(Servo.class, "led3");
 
+        Servo dropServo =
+                myOpMode.hardwareMap.get(Servo.class, "drop_servo");
+
+        intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
 
 
 
@@ -62,7 +70,9 @@ public class TestRobot extends DriveBasePID {
 
 
         intake = new Intake(intakeMotor);
+
         transfer = new Transfer(transferMotor);
+        dropper = new Dropper(dropServo);
 
 
 
@@ -83,6 +93,9 @@ public class TestRobot extends DriveBasePID {
         return colorQueue;
     }
 
+    public Dropper getDropper() {
+        return dropper;
+    }
 
 
 
