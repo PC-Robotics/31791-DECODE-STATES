@@ -53,7 +53,7 @@ public class WisdomTeleop extends LinearOpMode {
             testAngle = Range.clip(testAngle, 0.2, 0.8);
 
 
-            robot.getFlywheel().setAngle(testAngle);
+
 
             // ===== INTAKE SYSTEM =====
             if (gamepad1.right_trigger > 0.2) {
@@ -74,16 +74,10 @@ public class WisdomTeleop extends LinearOpMode {
             if(gamepad1.leftBumperWasPressed()){
                 robot.getFlywheel().stop();
             }
-            if(gamepad1.start){
-                robot.getBooster().run();
-                robot.getDropper().shoot();
-            } else{
-                robot.getBooster().stop();
-                robot.getDropper().hold();
-            }
 
 
 
+            /*
             // ===== DROPPER =====
             if (gamepad1.dpadDownWasPressed()) {
                 robot.getDropper().drop();
@@ -92,6 +86,8 @@ public class WisdomTeleop extends LinearOpMode {
             if (gamepad1.dpadUpWasPressed()) {
                 robot.getDropper().hold();
             }
+
+             */
 
             // ===== ARTIFACT QUEUE =====
             robot.getColorQueue().update();

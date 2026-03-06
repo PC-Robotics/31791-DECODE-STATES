@@ -61,13 +61,9 @@ public class WisdomBot extends DriveBasePID {
 
 
 
-        CRServo boosterLeft =
-                myOpMode.hardwareMap.get(CRServo.class, "boosterLeft");
 
-        CRServo boosterRight =
-                myOpMode.hardwareMap.get(CRServo.class, "boosterRight");
 
-        booster = new Booster(boosterLeft, boosterRight);
+
 
 
 
@@ -83,7 +79,7 @@ public class WisdomBot extends DriveBasePID {
         Servo shooterAngle =
                 myOpMode.hardwareMap.get(Servo.class, "shooterAngle");
 
-        flywheel = new Flywheel(fly1, fly2, shooterAngle);
+        flywheel = new Flywheel(fly1, fly2);
 
 
 
@@ -110,9 +106,7 @@ public class WisdomBot extends DriveBasePID {
     public Flywheel getFlywheel(){
         return flywheel;
     }
-    public Booster getBooster() {
-        return booster;
-    }
+
 
 
 

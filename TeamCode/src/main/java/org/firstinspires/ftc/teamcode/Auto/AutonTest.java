@@ -7,11 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Robots.DriveBasePID;
-@Disabled
+import org.firstinspires.ftc.teamcode.Robots.TestRobot;
+
 @Autonomous(name = "Autonomous Testing")
 public class AutonTest extends LinearOpMode {
 
-    DriveBasePID robot = new DriveBasePID(this, false);
+    TestRobot robot = new TestRobot(this, false);
 
     public void runOpMode() throws InterruptedException
     {
@@ -26,7 +27,10 @@ public class AutonTest extends LinearOpMode {
 
 
 
-            robot.forward(24,.65, 5);
+            while(true){
+                robot.getIntake().intake();
+                robot.getTransfer().run();
+            }
 
             //robot.turnTo(90, .5, 5);
 

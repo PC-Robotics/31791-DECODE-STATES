@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.ArtifactColorQueue;
 
 
-public class TestRobot extends DriveBase {
+public class TestRobot extends DriveBasePID {
 
     private Intake intake;
     private Flywheel flywheel;
@@ -55,6 +55,10 @@ public class TestRobot extends DriveBase {
         Servo dropServo =
                 myOpMode.hardwareMap.get(Servo.class, "drop_servo");
 
+        DcMotorEx fly1 = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel1");
+
+        DcMotorEx fly2 = myOpMode.hardwareMap.get(DcMotorEx.class, "flywheel2");
+
         intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -74,14 +78,20 @@ public class TestRobot extends DriveBase {
         transfer = new Transfer(transferMotor);
         dropper = new Dropper(dropServo);
 
+        flywheel = new Flywheel(fly1, fly2);
 
 
-        super.init();
+
+                super.init();
     }
 
 
     public Intake getIntake() {
         return intake;
+    }
+
+    public Flywheel getFlyWheel(){
+        return flywheel;
     }
 
 

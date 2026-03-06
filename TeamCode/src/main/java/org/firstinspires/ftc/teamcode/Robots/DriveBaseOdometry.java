@@ -45,7 +45,7 @@ public class DriveBaseOdometry extends DriveBase
         backwards is a negative number.
          */
         //TODO: Set the appropriate offets based on your build
-        odo.setOffsets(0.0, -24.0); //these are tuned for 3110-0002-0001 Product Insight #1
+        odo.setOffsets(180.5, 48.0); //these are tuned for 3110-0002-0001 Product Insight #1
 
         /*
         Set the kind of pods used by your robot. If you're using goBILDA odometry pods, select either
@@ -65,11 +65,11 @@ public class DriveBaseOdometry extends DriveBase
         you move the robot to the left.
          */
         //TODO: Run the simple odometry teleop and pay attention to telemetry values to make sure the directions are set correctly
-        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED );
 
         resetPositionAndOdometry();
 
-        Pose2D temp = new Pose2D(DistanceUnit.INCH, -46.5748, -23.70079, AngleUnit.DEGREES,0 );
+
 
         odo.getPosition();
 
