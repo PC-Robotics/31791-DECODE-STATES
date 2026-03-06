@@ -5,14 +5,10 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
-import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
-@Autonomous(name = "Autonomous Testing")
-public class AutonTest extends LinearOpMode {
+@Autonomous(name = "Autonomous Testing close")
+public class AutonTestclose extends LinearOpMode {
 
     TestRobot robot = new TestRobot(this, false);
 
@@ -27,8 +23,7 @@ public class AutonTest extends LinearOpMode {
 
         if(opModeIsActive())
         {
-            robot.goToPosition(-36, 0, 0, 0.5, .1);
-            PoseStorage.currentPose = robot.getRobotPosition();
+            robot.goToPosition(-15, 0, 0, 0.5, .1);
 
 
 

@@ -40,29 +40,29 @@ public class FlyWheelPIDF extends OpMode {
 
     @Override
     public void loop(){
-        if(gamepad1.triangleWasPressed()){
-            if(currTargetVelocity == highVelocity){
+        if(gamepad1.triangleWasPressed()) {
+            if(currTargetVelocity == highVelocity) {
                 currTargetVelocity = lowVelocity;
             }
-            else{
+            else {
                 currTargetVelocity = highVelocity;
             }
         }
 
-        if(gamepad1.crossWasPressed()){
+        if(gamepad1.crossWasPressed()) {
             stepIndex = (stepIndex+1) % stepSizes.length;
         }
 
-        if(gamepad1.dpadLeftWasPressed()){
+        if(gamepad1.dpadLeftWasPressed()) {
             f -= stepSizes[stepIndex];
         }
-        if(gamepad1.dpadRightWasPressed()){
+        if(gamepad1.dpadRightWasPressed()) {
             f += stepSizes[stepIndex];
         }
-        if(gamepad1.dpadUpWasPressed()){
+        if(gamepad1.dpadUpWasPressed()) {
             p -= stepSizes[stepIndex];
         }
-        if(gamepad1.dpadDownWasPressed()){
+        if(gamepad1.dpadDownWasPressed()) {
             p += stepSizes[stepIndex];
         }
 

@@ -10,8 +10,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
 import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
-@TeleOp(name="Wisdom Blue", group="Competition")
-public class Teleop extends LinearOpMode {
+@TeleOp(name="Wisdom Red", group="Competition")
+public class WisdomRed extends LinearOpMode {
 
     private TestRobot robot;
 
@@ -30,7 +30,7 @@ public class Teleop extends LinearOpMode {
 
     // ===== GOAL POSITION =====
     double goalFieldX = -150;
-    double goalFieldY = -86;
+    double goalFieldY = 86;
 
     double lastTurnError = 0;
     double lastTurnTime = 0;
@@ -58,7 +58,7 @@ public class Teleop extends LinearOpMode {
                     new Pose2D(
                             DistanceUnit.INCH,
                             0,
-                            36,
+                            -36,
                             AngleUnit.DEGREES,
                             0));
             telemetry.addLine("PoseStorage.currentPose was null; using fallback start pose");
