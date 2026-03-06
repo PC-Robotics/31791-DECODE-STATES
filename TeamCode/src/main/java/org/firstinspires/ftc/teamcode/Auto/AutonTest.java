@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Robots.DriveBasePID;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
+import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
 @Autonomous(name = "Autonomous Testing")
 public class AutonTest extends LinearOpMode {
@@ -24,13 +25,33 @@ public class AutonTest extends LinearOpMode {
 
         if(opModeIsActive())
         {
+            robot.getFlyWheel().setVelocity(2000);
+            Thread.sleep(1000);
+            robot.getDropper().shoot();
+            robot.getTransfer().run();
+            Thread.sleep(1000);
+            robot.getFlyWheel().stop();
+            robot.getDropper().hold();
+
+            robot.getIntake().intake();
+            robot.getTransfer().run();
+            robot.goToPosition(-24, -46, 90, .9, 0.1 );
+            robot.goToPosition(-40, -46, 90, 0.9, 0.1);
+            Thread.sleep(1000);
+            robot.getTransfer().stop();
+            robot.goToPosition(-10, 55, -29, .9, .11);
+            robot.getFlyWheel().setVelocity(2000);
+            Thread.sleep(1000);
+            robot.getDropper().shoot();
+            robot.getTransfer().run();
+            Thread.sleep(1000);
+            robot.goToPosition(-40, 55, 0, 0.9, .11);
+            PoseStorage.currentPose = robot.getRobotPosition();
 
 
 
-            while(true){
-                robot.getIntake().intake();
-                robot.getTransfer().run();
-            }
+
+
 
             //robot.turnTo(90, .5, 5);
 
