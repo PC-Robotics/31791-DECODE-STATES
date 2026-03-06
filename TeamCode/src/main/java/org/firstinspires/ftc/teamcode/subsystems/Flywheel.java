@@ -10,7 +10,6 @@ public class Flywheel {
 
     private DcMotorEx motor1;
     private DcMotorEx motor2;
-    private Servo angleServo;
 
     private double targetVelocity = 0;
 
@@ -19,6 +18,8 @@ public class Flywheel {
     private static final double I = 0;
     private static final double D = 0;
     private static final double F = 12;
+
+    public static final int shootingVelocity = 2000;
 
     public Flywheel(DcMotorEx m1, DcMotorEx m2) {
 
