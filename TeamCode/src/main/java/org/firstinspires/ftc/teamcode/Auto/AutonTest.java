@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.Auto;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Robots.DriveBasePID;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
 import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
@@ -27,7 +25,7 @@ public class AutonTest extends LinearOpMode {
         {
             robot.getFlyWheel().setVelocity(2000);
             Thread.sleep(1000);
-            robot.getDropper().shootPos();
+            robot.getDropper().shoot();
             robot.getTransfer().run();
             Thread.sleep(1000);
             robot.getFlyWheel().stop();
@@ -42,7 +40,7 @@ public class AutonTest extends LinearOpMode {
             robot.goToPosition(-10, 55, -29, .9, .11);
             robot.getFlyWheel().setVelocity(2000);
             Thread.sleep(1000);
-            robot.getDropper().shootPos();
+            robot.getDropper().shoot();
             robot.getTransfer().run();
             Thread.sleep(1000);
             robot.goToPosition(-40, 55, 0, 0.9, .11);

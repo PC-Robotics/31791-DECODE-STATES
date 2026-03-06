@@ -23,7 +23,7 @@ public class Dropper {
 
     }
 
-    public void shootPos(){
+    public void shoot(){
         servo.setPosition(SHOOT_POSITION);
 
     }

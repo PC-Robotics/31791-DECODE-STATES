@@ -181,7 +181,7 @@ public class Teleop extends LinearOpMode {
         }
 
         if(gamepad1.dpad_up){
-            robot.getDropper().shootPos();
+            robot.getDropper().shoot();
             telemetry.addLine("Dropper Shoot");
 
         }
