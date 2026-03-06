@@ -49,8 +49,8 @@ public class Flywheel {
 
     public void setVelocity(double velocity) {
         targetVelocity = velocity;
-        motor1.setVelocity(velocity);
-        motor2.setVelocity(velocity);
+        motor1.setVelocity(-velocity);
+        motor2.setVelocity(-velocity);
     }
 
     public void stop() {

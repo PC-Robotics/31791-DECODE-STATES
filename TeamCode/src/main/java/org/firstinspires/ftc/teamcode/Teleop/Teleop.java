@@ -53,6 +53,7 @@ public class Teleop extends LinearOpMode {
             handleDrive();
             handleIntakeAndTransfer();
             handleArtifactQueue();
+            shooter();
             updateTelemetry();
         }
     }
@@ -164,7 +165,7 @@ public class Teleop extends LinearOpMode {
     private void handleIntakeAndTransfer() {
 
         boolean intakeTrigger = gamepad1.right_trigger > 0.2;
-        boolean transferTrigger = gamepad1.left_trigger > 0.2;
+        boolean transferTrigger = gamepad1.left_bumper;
 
         if (intakeTrigger) {
             robot.getIntake().intake();
@@ -179,11 +180,14 @@ public class Teleop extends LinearOpMode {
             robot.getTransfer().stop();
         }
 
-        if(gamepad1.dpadUpWasPressed()){
-            robot.getDropper().shoot();
+        if(gamepad1.dpad_up){
+            robot.getDropper().shootPos();
+            telemetry.addLine("Dropper Shoot");
+
         }
-        else if(gamepad1.dpadDownWasPressed()){
+        else if(gamepad1.dpad_down){
             robot.getDropper().drop();
+            robot.getColorQueue().removeFirst();
         }
         else{
             robot.getDropper().hold();
@@ -201,7 +205,7 @@ public class Teleop extends LinearOpMode {
 
     private void shooter(){
         if(gamepad1.right_bumper){
-            robot.getFlyWheel().setVelocity(1500);
+            robot.getFlyWheel().setVelocity(2800);
         } else{
             robot.getFlyWheel().stop();
         }

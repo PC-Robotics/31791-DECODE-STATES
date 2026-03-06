@@ -27,7 +27,7 @@ public class AutonTest extends LinearOpMode {
         {
             robot.getFlyWheel().setVelocity(2000);
             Thread.sleep(1000);
-            robot.getDropper().shoot();
+            robot.getDropper().shootPos();
             robot.getTransfer().run();
             Thread.sleep(1000);
             robot.getFlyWheel().stop();
@@ -42,7 +42,7 @@ public class AutonTest extends LinearOpMode {
             robot.goToPosition(-10, 55, -29, .9, .11);
             robot.getFlyWheel().setVelocity(2000);
             Thread.sleep(1000);
-            robot.getDropper().shoot();
+            robot.getDropper().shootPos();
             robot.getTransfer().run();
             Thread.sleep(1000);
             robot.goToPosition(-40, 55, 0, 0.9, .11);

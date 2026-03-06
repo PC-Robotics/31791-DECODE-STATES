@@ -7,9 +7,9 @@ public class Dropper {
     private Servo servo;
 
 
-    private static final double DROP_POSITION = 0.75;
-    private static final double HOLD_POSITION = 0.2;
-    private static final double SHOOT_POSITION = 0.1;
+    private static final double DROP_POSITION = 0;
+    private static final double HOLD_POSITION = 0.24;
+    private static final double SHOOT_POSITION = 0.37;
 
     private boolean isDropped = false;
 
@@ -20,28 +20,20 @@ public class Dropper {
 
     public void drop() {
         servo.setPosition(DROP_POSITION);
-        isDropped = true;
+
     }
 
-    public void shoot(){
+    public void shootPos(){
         servo.setPosition(SHOOT_POSITION);
-        isDropped = false;
+
     }
 
     public void hold() {
         servo.setPosition(HOLD_POSITION);
-        isDropped = false;
+
     }
 
-    public void toggle() {
-        if (isDropped) {
-            hold();
-        } else {
-            drop();
-        }
-    }
 
-    public boolean isDropped() {
-        return isDropped;
-    }
+
+
 }
