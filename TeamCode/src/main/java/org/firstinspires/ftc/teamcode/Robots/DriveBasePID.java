@@ -25,6 +25,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Support.PIDController;
 
 public class DriveBasePID extends DriveBaseOdometry
@@ -185,6 +186,10 @@ public class DriveBasePID extends DriveBaseOdometry
     //                     pos=left
     //        angle 0 = audience angle = 90 to blue people side.
     //        Positive x = audience  Positive y = blue people side
+    public void goToPosition(Pose2D pose, double power, double holdTime) {
+        goToPosition(pose.getY(DistanceUnit.INCH), pose.getX(DistanceUnit.INCH), pose.getHeading(AngleUnit.RADIANS), power, holdTime);
+    }
+
     public void goToPosition(double yLocation, double xLocation, double headingDegree, double power, double holdTime)
     {
         driveController.reset(yLocation, power);

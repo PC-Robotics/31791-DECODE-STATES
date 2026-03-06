@@ -8,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
+import org.firstinspires.ftc.teamcode.Support.Alliance;
 import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
 @TeleOp(name="Wisdom Blue", group="Competition")
@@ -45,6 +46,8 @@ public class Teleop extends LinearOpMode {
 
         telemetry.addLine("Robot Ready");
         telemetry.update();
+
+        handleAllianceSelection();
 
         waitForStart();
         Pose2D startPose = PoseStorage.currentPose;
@@ -286,5 +289,26 @@ public class Teleop extends LinearOpMode {
                 (kp*error + kd*derivative)*scale,
                 -0.8,
                 0.8);
+    }
+
+    private void handleAllianceSelection() {
+        Alliance a = Alliance.BLUE;
+        gamepad1.rumble(500); // reminder to set alliance team
+        while (opModeInInit()) {
+            if (gamepad1.leftBumperWasPressed()) {
+                a = Alliance.BLUE;
+            } else if (gamepad1.rightBumperWasPressed()) {
+                a = Alliance.RED;
+            }
+
+
+            telemetry.addData("","Select Alliance");
+            telemetry.addData("","Left Bumper: Blue Alliance");
+            telemetry.addData("","Right Bumper: Red Alliance");
+            telemetry.addData(""," ------------------------- ");
+            telemetry.addData("","Current Alliance: " + a.toString());
+            telemetry.update();
+        }
+        robot.setAlliance(a);
     }
 }

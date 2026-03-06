@@ -169,4 +169,18 @@ public class DriveBaseOdometry extends DriveBase
             setRobotPosition(savedPose);
         }
     }
+
+    public static Pose2D mirror(Pose2D pose) {
+        double angle = Math.PI - pose.getHeading(AngleUnit.RADIANS);
+        while (angle < -Math.PI) {
+            angle += 2 * Math.PI;
+        }
+        return new Pose2D(
+                DistanceUnit.INCH,
+                -pose.getX(DistanceUnit.INCH),
+                pose.getY(DistanceUnit.INCH),
+                AngleUnit.RADIANS,
+                angle
+        );
+    }
 }
