@@ -16,8 +16,7 @@ public class AutonTest extends LinearOpMode {
 
     TestRobot robot = new TestRobot(this, false);
 
-    public void runOpMode() throws InterruptedException
-    {
+    public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         robot.init();
@@ -25,15 +24,9 @@ public class AutonTest extends LinearOpMode {
         waitForStart();
 
 
-        if(opModeIsActive())
-        {
+        if (opModeIsActive()) {
             robot.goToPosition(-36, 0, 0, 0.5, .1);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-
-
-
 
 
             //robot.turnTo(90, .5, 5);

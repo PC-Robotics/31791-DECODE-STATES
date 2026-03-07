@@ -11,13 +11,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Robots.TestRobot;
 import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
-@Autonomous(name = "Blue Preload")
-public class AutonTestBlue extends LinearOpMode {
+@Autonomous(name = "Red Preload")
+public class Preload extends LinearOpMode {
 
     TestRobot robot = new TestRobot(this, false);
 
-    public void runOpMode() throws InterruptedException
-    {
+    public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         robot.init();
@@ -26,14 +25,13 @@ public class AutonTestBlue extends LinearOpMode {
         robot.setRobotPosition(new Pose2D(
                 DistanceUnit.INCH,
                 58.031,
-                12,
+                -12,
                 AngleUnit.DEGREES,
                 180));
 
 
-        if(opModeIsActive())
-        {
-            robot.goToPosition(12, 53, 200, 0.5, .1);
+        if (opModeIsActive()) {
+            robot.goToPosition(-12, 53, 160, 0.5, .1);
 
 
             robot.getFlyWheel().setVelocity(4000);
@@ -43,13 +41,8 @@ public class AutonTestBlue extends LinearOpMode {
             Thread.sleep(5000);
             robot.getDropper().hold();
             robot.getTransfer().stop();
-            robot.goToPosition(36, 51, 180, .5,.6);
+            robot.goToPosition(36, 51, 180, .5, .6);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-
-
-
 
 
             //robot.turnTo(90, .5, 5);

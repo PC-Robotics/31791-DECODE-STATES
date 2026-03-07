@@ -53,14 +53,14 @@ public class Teleop extends LinearOpMode {
             robot.setRobotPosition(startPose);
             telemetry.addLine("Using PoseStorage.currentPose for start pose");
         } else {
-            // Fallback if you didn't run auto / pose wasn't saved
+
             robot.setRobotPosition(
                     new Pose2D(
                             DistanceUnit.INCH,
-                            0,
+                            51,
                             36,
                             AngleUnit.DEGREES,
-                            0));
+                            180));
             telemetry.addLine("PoseStorage.currentPose was null; using fallback start pose");
         }
 

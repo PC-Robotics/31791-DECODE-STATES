@@ -57,10 +57,10 @@ public class WisdomRed extends LinearOpMode {
             robot.setRobotPosition(
                     new Pose2D(
                             DistanceUnit.INCH,
-                            0,
-                            -36,
+                            48,
+                            20,
                             AngleUnit.DEGREES,
-                            0));
+                            180));
             telemetry.addLine("PoseStorage.currentPose was null; using fallback start pose");
         }
 
