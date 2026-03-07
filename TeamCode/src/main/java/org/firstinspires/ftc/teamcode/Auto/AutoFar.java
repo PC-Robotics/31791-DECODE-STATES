@@ -32,4 +32,5 @@ public class AutoFar extends LinearOpMode {
         telemetry.addLine("Auton Finished");
         telemetry.update();
     }
+
 }
