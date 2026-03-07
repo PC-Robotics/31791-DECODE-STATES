@@ -35,7 +35,7 @@ public class Teleop extends LinearOpMode {
     double lastTurnError = 0;
     double lastTurnTime = 0;
 
-    int vel = 5400;
+    int vel = 3800;
 
     @Override
     public void runOpMode() {
