@@ -22,19 +22,6 @@ public class AutonTestclose extends LinearOpMode {
 
         if (opModeIsActive()) {
             robot.goToPosition(-15, 0, 0, 0.5, .1);
-
-
-            //robot.turnTo(90, .5, 5);
-
-            //robot.strafe(24, .5, 5);
-
-            //robot.forward(24, .2, 100);
-
-            //robot.turnTo(180, 1, 100);
-
-            //robot.strafe(-24,1,100);
-
-
         }
         telemetry.addLine("Auton Finished");
         telemetry.update();

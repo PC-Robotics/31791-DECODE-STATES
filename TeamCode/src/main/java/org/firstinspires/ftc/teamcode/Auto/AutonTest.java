@@ -13,7 +13,6 @@ import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
 @Autonomous(name = "Autonomous Testing")
 public class AutonTest extends LinearOpMode {
-
     TestRobot robot = new TestRobot(this, false);
 
     public void runOpMode() throws InterruptedException {
@@ -27,19 +26,6 @@ public class AutonTest extends LinearOpMode {
         if (opModeIsActive()) {
             robot.goToPosition(-36, 0, 0, 0.5, .1);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-            //robot.turnTo(90, .5, 5);
-
-            //robot.strafe(24, .5, 5);
-
-            //robot.forward(24, .2, 100);
-
-            //robot.turnTo(180, 1, 100);
-
-            //robot.strafe(-24,1,100);
-
-
         }
         telemetry.addLine("Auton Finished");
         telemetry.update();

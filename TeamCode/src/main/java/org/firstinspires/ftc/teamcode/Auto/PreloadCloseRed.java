@@ -13,21 +13,14 @@ import org.firstinspires.ftc.teamcode.Support.PoseStorage;
 
 @Autonomous(name = "Red Preload Close")
 public class PreloadCloseRed extends LinearOpMode {
-
     TestRobot robot = new TestRobot(this, false);
 
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-
         robot.init();
 
         waitForStart();
-        robot.setRobotPosition(new Pose2D(
-                DistanceUnit.INCH,
-                -47,
-                53,
-                AngleUnit.DEGREES,
-                132));
+        robot.setRobotPosition(new Pose2D(DistanceUnit.INCH, -47, 53, AngleUnit.DEGREES, 132));
 
 
         if (opModeIsActive()) {
@@ -45,19 +38,6 @@ public class PreloadCloseRed extends LinearOpMode {
             robot.goToPosition(60, 0, -90, .5, 10);
             robot.goToPosition(28, -50, 0, 0.5, 5);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-            //robot.turnTo(90, .5, 5);
-
-            //robot.strafe(24, .5, 5);
-
-            //robot.forward(24, .2, 100);
-
-            //robot.turnTo(180, 1, 100);
-
-            //robot.strafe(-24,1,100);
-
-
         }
         telemetry.addLine("Auton Finished");
         telemetry.update();

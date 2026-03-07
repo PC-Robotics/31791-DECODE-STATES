@@ -43,19 +43,6 @@ public class Preload extends LinearOpMode {
             robot.getTransfer().stop();
             robot.goToPosition(36, 51, 180, .5, .6);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-            //robot.turnTo(90, .5, 5);
-
-            //robot.strafe(24, .5, 5);
-
-            //robot.forward(24, .2, 100);
-
-            //robot.turnTo(180, 1, 100);
-
-            //robot.strafe(-24,1,100);
-
-
         }
         telemetry.addLine("Auton Finished");
         telemetry.update();

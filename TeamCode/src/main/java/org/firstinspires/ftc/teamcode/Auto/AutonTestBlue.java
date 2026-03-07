@@ -16,23 +16,16 @@ public class AutonTestBlue extends LinearOpMode {
 
     TestRobot robot = new TestRobot(this, false);
 
-    public void runOpMode() throws InterruptedException
-    {
+    public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         robot.init();
 
         waitForStart();
-        robot.setRobotPosition(new Pose2D(
-                DistanceUnit.INCH,
-                58.031,
-                12,
-                AngleUnit.DEGREES,
-                180));
+        robot.setRobotPosition(new Pose2D(DistanceUnit.INCH, 58.031, 12, AngleUnit.DEGREES, 180));
 
 
-        if(opModeIsActive())
-        {
+        if (opModeIsActive()) {
             robot.goToPosition(12, 53, 200, 0.5, .1);
 
 
@@ -43,26 +36,8 @@ public class AutonTestBlue extends LinearOpMode {
             Thread.sleep(5000);
             robot.getDropper().hold();
             robot.getTransfer().stop();
-            robot.goToPosition(36, 51, 180, .5,.6);
+            robot.goToPosition(36, 51, 180, .5, .6);
             PoseStorage.currentPose = robot.getRobotPosition();
-
-
-
-
-
-
-
-            //robot.turnTo(90, .5, 5);
-
-            //robot.strafe(24, .5, 5);
-
-            //robot.forward(24, .2, 100);
-
-            //robot.turnTo(180, 1, 100);
-
-            //robot.strafe(-24,1,100);
-
-
         }
         telemetry.addLine("Auton Finished");
         telemetry.update();
