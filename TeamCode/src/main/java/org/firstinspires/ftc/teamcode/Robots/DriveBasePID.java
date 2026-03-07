@@ -187,7 +187,7 @@ public class DriveBasePID extends DriveBaseOdometry
     //        angle 0 = audience angle = 90 to blue people side.
     //        Positive x = audience  Positive y = blue people side
     public void goToPosition(Pose2D pose, double power, double holdTime) {
-        goToPosition(pose.getY(DistanceUnit.INCH), pose.getX(DistanceUnit.INCH), pose.getHeading(AngleUnit.RADIANS), power, holdTime);
+        goToPosition(pose.getX(DistanceUnit.INCH), pose.getY(DistanceUnit.INCH), pose.getHeading(AngleUnit.DEGREES), power, holdTime);
     }
 
     public void goToPosition(double yLocation, double xLocation, double headingDegree, double power, double holdTime)

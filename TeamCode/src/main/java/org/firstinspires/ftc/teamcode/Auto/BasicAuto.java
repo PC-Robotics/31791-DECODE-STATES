@@ -21,6 +21,7 @@ public class BasicAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException
     {
         robot.init();
+        robot.setRobotPosition(startPose);
 
         handleAllianceSelection();
 
