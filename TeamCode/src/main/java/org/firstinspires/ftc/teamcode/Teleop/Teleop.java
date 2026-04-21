@@ -183,7 +183,7 @@ public class Teleop extends LinearOpMode {
     // ===== INTAKE & TRANSFER =====
     private void handleIntakeAndTransfer() {
 
-        boolean intakeTrigger = gamepad1.right_trigger > 0.2;
+        boolean intakeTrigger = gamepad2.right_trigger > 0.2;
         boolean transferTrigger = gamepad2.left_trigger > 0.2;
 
         if (intakeTrigger) {
@@ -233,6 +233,9 @@ public class Teleop extends LinearOpMode {
         if (gamepad2.crossWasPressed()) {
             vel += 100;
         }
+        if(gamepad2.triangleWasPressed()) {
+            vel -= 100;
+        }
     }
 
     // ===== TELEMETRY =====
@@ -244,6 +247,13 @@ public class Teleop extends LinearOpMode {
         telemetry.addData("Y", robot.getRobotPosition().getY(DistanceUnit.INCH));
         telemetry.addData("Artifacts", robot.getColorQueue().size());
         telemetry.addData("Next", robot.getColorQueue().peek());
+
+
+        telemetry.addLine("===== Velocity ======");
+        telemetry.addLine("Press cross to increase");
+        telemetry.addLine("Press Square to decrease");
+        telemetry.addData("Velocity  ::  ",  vel);
+
         telemetry.update();
     }
 

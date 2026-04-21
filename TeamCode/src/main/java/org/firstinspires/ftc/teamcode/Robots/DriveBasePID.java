@@ -30,7 +30,7 @@ import org.firstinspires.ftc.teamcode.Support.PIDController;
 public class DriveBasePID extends DriveBaseOdometry
 {
     private ElapsedTime holdTimer = new ElapsedTime();
-
+    private ElapsedTime pathTimer = new ElapsedTime();
     private PIDController driveController = new PIDController(DRIVE_KP,DRIVE_KI,DRIVE_KD,DRIVE_MAX_AUTO,DRIVE_TOLERANCE,DRIVE_DEADBAND,false);
     private PIDController strafeController = new PIDController(STRAFE_KP,STRAFE_KI,STRAFE_KD,STRAFE_MAX_AUTO,STRAFE_TOLERANCE,STRAFE_DEADBAND, false);
     private PIDController yawController = new PIDController(YAW_KP,YAW_KI,YAW_KD,YAW_MAX_AUTO,YAW_TOLERANCE,YAW_DEADBAND,true);
@@ -185,11 +185,16 @@ public class DriveBasePID extends DriveBaseOdometry
     //                     pos=left
     //        angle 0 = audience angle = 90 to blue people side.
     //        Positive x = audience  Positive y = blue people side
-    public void goToPosition(double yLocation, double xLocation, double headingDegree, double power, double holdTime)
+    public void goToPosition(double yLocation, double xLocation, double headingDegree, double power, double holdTime) {
+        goToPosition(yLocation, xLocation, headingDegree, power, holdTime, 5.0);
+    }
+
+    public void goToPosition(double yLocation, double xLocation, double headingDegree, double power, double holdTime, double pathTime)
     {
         driveController.reset(yLocation, power);
         strafeController.reset(xLocation, power);
         yawController.reset(headingDegree, power);
+        pathTimer.reset();
 
         while(myOpMode.opModeIsActive())
         {
@@ -210,6 +215,10 @@ public class DriveBasePID extends DriveBaseOdometry
             drive(axialPower,-lateralPower, -yawPower);
 
             myOpMode.telemetry.update();
+
+            if (pathTimer.seconds() > 10) {
+                break;
+            }
 
             if(driveController.isInPosition() && strafeController.isInPosition() && yawController.isInPosition())
             {
@@ -239,8 +248,6 @@ public class DriveBasePID extends DriveBaseOdometry
         double yawPower = yawController.getOutput(headingDegree);
 
         drive(axialPower, -lateralPower, -yawPower);
-
-        //myOpMode.telemetry.update();
     }
 
     public void driveWithHold(double axialInput, double lateralInput, double yawInput) {

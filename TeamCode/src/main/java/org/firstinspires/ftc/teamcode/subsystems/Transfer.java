@@ -14,6 +14,10 @@ public class Transfer {
         motor.setPower(1.0);
     }
 
+    public void run(double power) {
+        motor.setPower(power);
+    }
+
     public void reverse() {
         motor.setPower(-1.0);
     }
